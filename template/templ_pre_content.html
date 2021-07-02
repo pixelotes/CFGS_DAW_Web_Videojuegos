@@ -1,0 +1,30 @@
+<div id="login">
+	<span>
+		Usuario
+	</span>
+	<input type="text" class="texto" id="userId" title="Introduce tu nombre de usuario o direcci&oacute;n de correo electr&oacute;nico" style="width: 90%;" onkeypress="validar(event)">
+	</input>
+	<span>
+		Clave:
+	</span>
+	<input type="password" class="texto" id="userPass" title="Introduce tu clave" style="width: 90%;" onkeypress="validar(event)">
+	</input>
+	<input type="submit" value="Enviar" id="btnLogin">
+	</input>
+	<br>
+	<a href="recuperar.php" id="recordatorio">
+		&iquest;Olvidaste tu clave?
+	</a>
+</div>
+<?php
+//CAMPO OCULTO CON EL NOMBRE DE USUARIO LOGEADO (PARA PUNTUACION DE LOS JUEGOS)
+if(isset($_SESSION['usuario'])){
+echo("
+<input type=\"hidden\" id=\"hdnSession\" value=\"".$_SESSION['usuario']."\">
+</input>");
+} else {
+echo("
+<input type=\"hidden\" id=\"hdnSession\" value=\"invitado\">
+</input>");
+} ?>
+<div id="contenido">

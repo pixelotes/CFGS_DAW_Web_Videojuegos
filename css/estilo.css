@@ -1,0 +1,398 @@
+/* GENERAL */
+
+html {
+	height: 100%;
+}
+
+body {
+    font-family: Calibri;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* DIVS */
+
+div#cabecera {
+    background-color: #d00a0a;
+    height: 60px;
+    color: white;
+    font-weight: bolder;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+div#login {
+    position: absolute;
+    background-color: #ffffff;
+    width: 150px;
+    padding: 10px;
+    top: 65px;
+    right: 0px;
+    border: 3px solid #d00a0a;
+    border-top: 0px;
+    font-size: 0.8em;
+    font-weight: bold;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0px 5px 10px;
+    z-index: 5;
+}
+
+div#login > input.texto:focus {
+    background-color: lightblue;
+}
+
+div#nav {
+    width: 100%;
+    font-weight: bolder;
+    text-align: center;
+    height: 1.5em;
+    border-bottom: 1px dotted black;
+}
+
+div#contenido {
+    top: 55px;
+    min-height: 450px;
+    background-color: #ffffff;
+}
+
+div#pie {
+    background-color: #d00a0a;
+    height: 80px;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 0.9em;
+    border-top: 2px solid white;
+    border: 0;
+    left: 0;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+}
+
+/* COMENTARIOS */
+div#commentBox {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 30px;
+    padding: 10px;
+    border: 1px solid darkgrey;
+}
+
+span#commentHeader {
+    margin-left: 11%;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#commentToggle {
+    color: #d00a0a;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+span#commentAdd, span#commentAddNew {
+    color: #d00a0a;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+div#comment {
+    background-color:#d00a0a;
+    
+}
+
+span#commentTitle {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+span#commentAuthor {
+    display:inline-block;
+    float:right;
+    color:white;
+    font-weight: bold;
+}
+
+span#commentBody {
+    display:block;
+    background-color: white;
+    padding: 3px;
+}
+
+/* ELEMENTOS */
+p {
+	color: #d00a0a;
+	font-size: 1.5em;
+	font-weight: bolder;
+	margin: 0;
+}
+
+form {
+	margin: 0;
+}
+
+span#welcomemsg {
+    float: right;
+}
+
+#logo {
+    height: 55px;
+    float: left;
+}
+
+#recordatorio {
+    font-style: italic;
+    color: black;
+    text-decoration: none;
+}
+
+input#btnLogin {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border: none;
+    padding: 3px 6px 3px 6px;
+    background-color: #d00a0a;
+    font-weight: bold;
+    color: white;
+}
+
+#cabecera button {
+    background-color: white;
+    border: none;
+    padding: 3px;
+    color: #d00a0a;
+    font-weight: bold;
+}
+
+div#nav ul li {
+    list-style-type: none;
+    text-align: center;
+    margin: 5px;
+    display: inline;
+}
+
+div#nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+div#nav ul li:hover {
+    opacity: 0.5;
+}
+
+/* LISTA DE JUEGOS */
+#listajuegos {
+    padding: 40px;
+    list-style-type: none;
+    
+}
+
+#listajuegos li {
+    display: inline;
+    
+}
+
+#listajuegos li img {
+    height: 150px;
+    width: 130px;
+    margin: 10px;
+    box-shadow: 0px 5px 5px;
+    color: black;
+    
+}
+
+.ui-icon-closethick {
+	height: 50px;
+}
+
+.slicknav_menu {
+	display:none;
+}
+
+/* RANKING PUNTUACIONES */
+#tblPuntuaciones {
+	border: 2px solid #d00a0a;
+	padding: 3px;
+	border-radius: 3px;
+	box-shadow: 5px 3px 3px lightgrey;
+}
+
+#tblPuntuaciones #cabecera {
+	font-weight: bolder;
+}
+
+#divPuntuaciones {
+	background-color: white;
+}
+
+#divPuntuaciones span {
+	color: #d00a0a;
+	font-weight: bolder;
+	z-index: 2;
+}
+
+/* MENU */
+* {
+	margin:0px;
+	padding:0px;
+}
+
+ul, ol {
+	list-style:none;
+}
+
+.nav li a {
+	color:#fff;
+	text-decoration:none;
+	
+}
+
+.nav li a:hover {
+	background-color:#434343;
+}
+
+.nav li ul {
+	display:none;
+	position:fixed;
+
+}
+
+.nav li:hover > ul {
+	display:block;
+    text-align:left;
+    margin: 0px;
+}
+
+.nav li ul li {
+	z-index:99;
+	position:relative;
+	text-align: right;
+    min-width: 140px;
+    right: 117px;
+    border-top: 1px solid white;
+    padding:6px 6px;
+    background-color:#d00a0a;
+    margin: 0px;
+    box-shadow: 0px 5px 0px 0px black;
+}
+
+.nav li ul li ul {
+	top:0px;
+}
+
+/* FORM REGISTRO */
+
+#frmRegistro {
+    margin: 5px;
+    margin-left: 30px;
+}
+
+#frmRegistro > span {
+    font-weight: bolder;
+    min-width: 140px;
+    display: block;
+}
+
+#frmRegistro > input {
+    display:block;
+    width: 300px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 2px solid black;
+}
+
+#frmRegistro > input:focus {
+    background-color: lightblue;
+    
+}
+
+#frmRegistro > button {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #d00a0a;
+    color: white;
+    font-weight: bold;
+}
+
+#frmRegistro > button:hover {
+    background-color: orangered;
+}
+
+/* FORM RECUPERAR */
+
+#recuperar {
+    margin: 5px;
+    margin-left: 30px;
+}
+
+#recuperar > button {
+	display: block;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #d00a0a;
+    color: white;
+    font-weight: bold;
+}
+
+#recuperar > span {
+    font-weight: bolder;
+    min-width: 140px;
+}
+
+#recuperar > input {
+	margin-left: 10px;
+    width: 300px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 2px solid black;
+}
+
+#recuperar > input:focus {
+    background-color: lightblue;
+    
+}
+
+#recuperar > button:hover {
+	background-color: orangered;
+}
+/* RESPONSIVE */
+@media screen and (max-width: 600px) {
+	/* #menu is the original menu */
+	#menu {
+		/*display:none;*/
+	}
+	
+	.slicknav_menu {
+		display:block;
+	}
+    
+    #contenido {
+        min-height: 200px;
+    }
+    
+    #welcomemsg {
+        font-size: 0.8em;
+        margin-bottom: 0px;
+    }
+    
+    button { 
+        font-size: 0.5em;
+    }
+    
+    #nav {
+        font-size: 0.6em;
+    }
+    
+   #logo{
+       margin-top: 10px;
+       width: 50%;
+       height: 50%;
+   }
+    
+    #pie {
+        font-size: 0.5em;
+    }
+}
