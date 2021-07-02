@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platformer in Phaser</title>
+    <style>
+    #gameDiv {
+        width: 500px;
+        height: 340px;
+        background-color: red;
+    }
+    </style>
+    <script src="phaser.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+    //Inicializar objeto Phaser
+    var game = new Phaser.Game(500, 340, Phaser.AUTO, "gameDiv");
+        
+    //Añadir estado principal a Phaser
+    game.state.add('main', mainState);
+        
+    //ejecutar el juego
+    game.state.start('main');
+        
+    </script>
+</head>
+
+<body>
+    <div id="gameDiv"></div>
+</body>
+</html>

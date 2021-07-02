@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<link rel="pingback" href="http://www.loopeex.com/xmlrpc.php" />
+	
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.7.4 - https://yoast.com/wordpress/plugins/seo/ -->
+<title>Handle a pause screen with Phaser - Loopeex</title>
+<meta name="description" content="Tutorial on how to code a pause screen with Phaser framework"/>
+<link rel="canonical" href="http://www.loopeex.com/handle-a-pause-screen-with-phaser/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Handle a pause screen with Phaser - Loopeex" />
+<meta property="og:description" content="Tutorial on how to code a pause screen with Phaser framework" />
+<meta property="og:url" content="http://www.loopeex.com/handle-a-pause-screen-with-phaser/" />
+<meta property="og:site_name" content="Loopeex" />
+<meta property="article:section" content="Non classé" />
+<meta property="article:published_time" content="2014-05-29T21:41:13+00:00" />
+<meta property="article:modified_time" content="2014-05-29T23:53:12+00:00" />
+<meta property="og:updated_time" content="2014-05-29T23:53:12+00:00" />
+<meta property="og:image" content="http://www.loopeex.com/wp-content/uploads/2014/05/pause-screen.jpg" />
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="Loopeex &raquo; Feed" href="http://www.loopeex.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Loopeex &raquo; Comments Feed" href="http://www.loopeex.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Loopeex &raquo; Handle a pause screen with Phaser Comments Feed" href="http://www.loopeex.com/handle-a-pause-screen-with-phaser/feed/" />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://www.loopeex.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='disqus_rcw-css'  href='http://www.loopeex.com/wp-content/plugins/disqus-recent-comments-widget/disqus_rcw.css?ver=4.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='flat-main-css'  href='http://www.loopeex.com/wp-content/themes/flat/assets/css/main.min.css?ver=1.4.2' type='text/css' media='all' />
+<link rel='stylesheet' id='flat-style-css'  href='http://www.loopeex.com/wp-content/themes/flat/style.css?ver=1.4.2' type='text/css' media='all' />
+<script type='text/javascript' src='http://www.loopeex.com/wp-includes/js/jquery/jquery.js?ver=1.11.1'></script>
+<script type='text/javascript' src='http://www.loopeex.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.loopeex.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.loopeex.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.0.1" />
+<link rel='shortlink' href='http://www.loopeex.com/?p=79' />
+<!--[if lt IE 9]>
+<script src="http://www.loopeex.com/wp-content/themes/flat/assets/js/html5shiv.min.js"></script>
+<script src="http://www.loopeex.com/wp-content/themes/flat/assets/js/respond.min.js"></script>
+<![endif]-->
+<link type="image/x-icon" href="http://www.loopeex.com/wp-content/uploads/2014/05/favicon.png" rel="shortcut icon"><style type="text/css">#page:before, .sidebar-offcanvas, #secondary { background-color: #333333; }@media (max-width: 1199px) { #page &gt; .container { background-color: #333333; } }body { background-size: cover; }</style><style type="text/css">#masthead .site-title {font-family:Amatic SC}body {font-family:Roboto}h1,h2,h3,h4,h5,h6 {font-family:Roboto Slab}#masthead .site-description, .hentry .entry-meta {font-family:Roboto Condensed}</style><link href="//fonts.googleapis.com/css?family=Amatic SC|Roboto|Roboto Slab|Roboto Condensed" rel="stylesheet" type="text/css"><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #eeeeee; }
+</style>
+</head>
+
+<body class="single single-post postid-79 single-format-standard custom-background">
+<div id="page">
+	<div class="container">
+		<div class="row row-offcanvas row-offcanvas-left">
+			<div id="secondary" class="col-lg-3">
+				<header id="masthead" class="site-header" role="banner">
+					<div class="hgroup">
+						<h1 class="site-title display-title"><a href="http://www.loopeex.com/" title="Loopeex" rel="home">Loopeex</a></h1><h2 class="site-description">HTML5 games and experiments</h2>					</div>
+					<button type="button" class="btn btn-link hidden-lg toggle-sidebar" data-toggle="offcanvas" aria-label="Sidebar"><i class="fa fa-gear"></i></button>
+					<button type="button" class="btn btn-link hidden-lg toggle-navigation" aria-label="Navigation Menu"><i class="fa fa-bars"></i></button>
+					<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+						<ul id="menu-header" class="nav-menu"><li id="menu-item-19" class="fa fa-home menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-19"><a href="http://www.loopeex.com">Home</a></li>
+<li id="menu-item-18" class="fa fa-html5 menu-item menu-item-type-post_type menu-item-object-page menu-item-18"><a href="http://www.loopeex.com/html5-games/">HTML5 Games</a></li>
+<li id="menu-item-24" class="fa fa-envelope menu-item menu-item-type-post_type menu-item-object-page menu-item-24"><a href="http://www.loopeex.com/contact/">Contact</a></li>
+</ul>					</nav>
+				</header>
+
+				<div class="sidebar-offcanvas">
+					<div id="main-sidebar" class="widget-area" role="complementary">
+	<aside id="search-2" class="widget widget_search">	<form method="get" id="searchform" action="http://www.loopeex.com/">
+		<label for="s" class="assistive-text">Search</label>
+		<input type="text" class="field" name="s" id="s" placeholder="Search" />
+		<input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+	</form>
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://www.loopeex.com/space-crusade-my-first-html5-game/">Space Crusade : My first HTML5 game</a>
+						</li>
+					<li>
+				<a href="http://www.loopeex.com/lets-start-simple/">Let&#8217;s start simple !</a>
+						</li>
+					<li>
+				<a href="http://www.loopeex.com/challenge-mode-on/">Challenge mode ON</a>
+						</li>
+					<li>
+				<a href="http://www.loopeex.com/handle-a-pause-screen-with-phaser/">Handle a pause screen with Phaser</a>
+						</li>
+					<li>
+				<a href="http://www.loopeex.com/adjusting-resize-on-mobile-devices/">Adjusting resize on mobile devices</a>
+						</li>
+				</ul>
+		</aside><aside id="disqus_recent_comments-2" class="widget disqus_recent_comments_widget_wrapper"><aside id="disqus_rcw_title" class="widget"><h3 class="widget-title">Recent comments</h3><ul class="disqus_rcw_comments_list">
+					<li class="disqus_rcw_single">
+						<div class="disqus_rcw_author_wrapper">
+							<img class="disqus_rcw_avatar_html5" src="//a.disquscdn.com/uploads/users/13700/7939/avatar92.jpg?1420711078" alt="Kevin Versavel">
+							<a href="https://disqus.com/by/kevinversavel/">
+								<span class="disqus_rcw_author">Kevin Versavel</span>
+							</a>
+						</div>
+						<div class="disqus_rcw_clear"></div>
+						<div class="disqus_rcw_content_wrapper">
+							<a class="disqus_rcw_thread_title" href="http://www.loopeex.com/html5-games/space-crusade/">Space crusade</a>
+							<br />
+							<a class="disqus_rcw_message" href="http://www.loopeex.com/html5-games/space-crusade/#comment-1778021624">thanks! :)</a>
+						</div>
+						<time datetime="1/8/2015" class="disqus_rcw_post_time_html5">1/8/2015</time>
+					</li>
+					<li class="disqus_rcw_single">
+						<div class="disqus_rcw_author_wrapper">
+							<img class="disqus_rcw_avatar_html5" src="//a.disquscdn.com/uploads/users/10827/2865/avatar92.jpg?1401238135" alt="Loopeex">
+							<a href="https://disqus.com/by/Loopeex/">
+								<span class="disqus_rcw_author">Loopeex</span>
+							</a>
+						</div>
+						<div class="disqus_rcw_clear"></div>
+						<div class="disqus_rcw_content_wrapper">
+							<a class="disqus_rcw_thread_title" href="http://www.loopeex.com/html5-games/space-crusade/">Space crusade</a>
+							<br />
+							<a class="disqus_rcw_message" href="http://www.loopeex.com/html5-games/space-crusade/#comment-1760917667">Yes, you need use nodeJS to install dependencies and run grunt to compile the game in a "game" directory, that you have to run on a server.</a>
+						</div>
+						<time datetime="12/27/2014" class="disqus_rcw_post_time_html5">12/27/2014</time>
+					</li>
+					<li class="disqus_rcw_single">
+						<div class="disqus_rcw_author_wrapper">
+							<img class="disqus_rcw_avatar_html5" src="//a.disquscdn.com/uploads/users/13700/7939/avatar92.jpg?1420711078" alt="Kevin Versavel">
+							<a href="https://disqus.com/by/kevinversavel/">
+								<span class="disqus_rcw_author">Kevin Versavel</span>
+							</a>
+						</div>
+						<div class="disqus_rcw_clear"></div>
+						<div class="disqus_rcw_content_wrapper">
+							<a class="disqus_rcw_thread_title" href="http://www.loopeex.com/html5-games/space-crusade/">Space crusade</a>
+							<br />
+							<a class="disqus_rcw_message" href="http://www.loopeex.com/html5-games/space-crusade/#comment-1759591931">Nice game! Downloading the source code gives me nothing on the screen when launched.. How do I have to use the package.json? I suppose it's something like composer?</a>
+						</div>
+						<time datetime="12/26/2014" class="disqus_rcw_post_time_html5">12/26/2014</time>
+					</li>
+					<li class="disqus_rcw_single">
+						<div class="disqus_rcw_author_wrapper">
+							<img class="disqus_rcw_avatar_html5" src="//a.disquscdn.com/uploads/users/793/3823/avatar92.jpg?1342369347" alt="Pierre-Alexandre Piarulli">
+							<a href="https://disqus.com/by/rubyrockme/">
+								<span class="disqus_rcw_author">Pierre-Alexandre Piarulli</span>
+							</a>
+						</div>
+						<div class="disqus_rcw_clear"></div>
+						<div class="disqus_rcw_content_wrapper">
+							<a class="disqus_rcw_thread_title" href="http://www.loopeex.com/handle-a-pause-screen-with-phaser/">Handle a pause screen with Phaser</a>
+							<br />
+							<a class="disqus_rcw_message" href="http://www.loopeex.com/handle-a-pause-screen-with-phaser/#comment-1710655756">Bravo, bel article.
+Thanks nice post.</a>
+						</div>
+						<time datetime="11/24/2014" class="disqus_rcw_post_time_html5">11/24/2014</time>
+					</li>
+					<li class="disqus_rcw_single">
+						<div class="disqus_rcw_author_wrapper">
+							<img class="disqus_rcw_avatar_html5" src="//a.disquscdn.com/uploads/users/1964/4768/avatar92.jpg?1420750586" alt="Salvatore Capolupo">
+							<a href="https://disqus.com/by/salcapolupo/">
+								<span class="disqus_rcw_author">Salvatore Capolupo</span>
+							</a>
+						</div>
+						<div class="disqus_rcw_clear"></div>
+						<div class="disqus_rcw_content_wrapper">
+							<a class="disqus_rcw_thread_title" href="http://www.loopeex.com/handle-a-pause-screen-with-phaser/">Handle a pause screen with Phaser</a>
+							<br />
+							<a class="disqus_rcw_message" href="http://www.loopeex.com/handle-a-pause-screen-with-phaser/#comment-1649650952">Great hints thank you!</a>
+						</div>
+						<time datetime="10/23/2014" class="disqus_rcw_post_time_html5">10/23/2014</time>
+					</li></ul></aside></aside></div>				</div>
+			</div>
+			<div id="primary" class="content-area col-lg-9">
+
+			<div id="content" class="site-content" role="main">
+
+			
+				<article id="post-79" class="post-79 post type-post status-publish format-standard has-post-thumbnail hentry category-non-classe">
+	<header class="entry-header">
+		<h1 class="entry-title">Handle a pause screen with Phaser</h1>
+							<div class="entry-meta"><span class="entry-date"><a href="http://www.loopeex.com/handle-a-pause-screen-with-phaser/" rel="bookmark"><time class="entry-date" datetime="2014-05-29T21:41:13+00:00">29 May 2014</time></a></span> by <span class="byline"><span class="author vcard"><a class="url fn n" href="http://www.loopeex.com/author/adm-lg/" rel="author">Loopeex</a></span></span><span class="sep">&middot;</span><span class="comments-link"><a href="http://www.loopeex.com/handle-a-pause-screen-with-phaser/#comments" title="Comment on Handle a pause screen with Phaser"><span class="dsq-postid" data-dsqidentifier="79 http://www.loopeex.com/?p=79">6 Comments</span></a></span></div>
+			</header>
+		
+	<div class="entry-content">
+		<p>OK, let&#8217;s assume we have just finished a game with Phaser. Great, but let&#8217;s say you want to create a pause screen during your play state. You can pause the entire game with this simple line of code :</p>
+<pre class="prettyprint">this.game.paused = true;
+</pre>
+<p>Fine, all the game is paused&#8230; But wait, I can&#8217;t interact with anything now ! Yeah in fact, we just freezed the entire game, the way Phaser do when your canvas looses focus.<span id="more-79"></span> But you can still have have access to &#8220;this.game.input&#8221; to listen for mouse/touch events and keyboard events, but it&#8217;s pretty hard to deal with it , especially for a mobile game, since you have to calculate if your pointer is on this or that button. In the case you just want to pause your game this way and wait for the player to unpause it with a keypress for example, take a look at <a href="http://www.html5gamedevs.com/topic/6175-example-pauseupdate-in-new-204-working/" target="_blank">@Heppell08 example of how to use Phaser pauseUpdate</a> (added in version 2.0.4)</p>
+<p>Another alternative would have been to create a new game state &#8220;pause&#8221; when clicking a pause button, but when entering that state, we would loose all information about our playing state.</p>
+<p>So, a possible solution is to to add a &#8220;paused&#8221; flagged to our game state, and handle the different states of that flag within our state. I create a <a href="http://examples.loopeex.com/moving-hero/" target="_blank">simple Phaser prototype</a> of an automatic moving hero who can jump (Spacebar and touch/mouse). I used <a href="http://www.kenney.nl/" target="_blank">@KenneyWings</a> assets since I&#8217;m not a very gifted graphist, and I like his work very much.</p>
+<p><iframe src="http://examples.loopeex.com/moving-hero/" width="480" height="320"></iframe></p>
+<p>The prototype consists in a single state handling the preloading of the assets, the  ground and  hero with collisions detection, and moving clouds, and the player&#8217;s actions.<br />
+You can take a look a the code below (And <a href="http://examples.loopeex.com/moving-hero/moving-hero.zip">download it here</a>) :</p>
+<pre class="prettyprint">window.onload = function(){
+
+	&#47;&#47; Pause flag
+	var paused = true;
+
+	&#47;&#47; Create our game unique game state
+	var Game = function(game){};
+
+	Game.prototype = {
+		preload: function(){
+			&#47;&#47; Load assets
+			this.load.image(&#39;ground&#39;, &#39;assets&#47;ground.png&#39;);
+			this.load.image(&#39;cloud&#39;, &#39;assets&#47;cloud.png&#39;);
+			this.load.image(&#39;btnPause&#39;, &#39;assets&#47;btn-pause.png&#39;);
+			this.load.image(&#39;btnPlay&#39;, &#39;assets&#47;btn-play.png&#39;);
+			this.load.image(&#39;panel&#39;, &#39;assets&#47;panel.png&#39;);
+			this.load.spritesheet(&#39;hero&#39;, &#39;assets&#47;hero.png&#39;, 70, 94, 11);
+			this.load.bitmapFont(&#39;kenpixelblocks&#39;, &#39;assets&#47;fonts&#47;kenpixelblocks&#47;kenpixelblocks.png&#39;, &#39;assets&#47;fonts&#47;kenpixelblocks&#47;kenpixelblocks.fnt&#39;);
+		},
+
+		create: function(){
+			&#47;&#47; Reponsive and centered canvas
+			this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+			this.scale.minWidth = 320;
+			this.scale.minHeight = 200;
+			this.scale.maxWidth = 720;
+			this.scale.maxHeight = 480;
+
+			this.scale.pageAlignHorizontally = true;
+			this.scale.pageAlignVertically = true;
+
+			this.scale.setScreenSize(true);
+
+			&#47;&#47; Change stage background color
+			this.game.stage.backgroundColor = &#39;#d0f4f7&#39;;
+
+			&#47;&#47; Enable arcade physics
+			this.game.physics.startSystem(Phaser.Physics.ARCADE);
+			this.game.physics.arcade.gravity.y = 1200;
+
+			&#47;&#47; Add a scrolling ground
+			this.ground = this.game.add.tileSprite(0, 250, 480, 70, &#39;ground&#39;);
+			this.game.physics.arcade.enableBody(this.ground);
+			this.ground.body.immovable = true;
+			this.ground.body.allowGravity = false;
+			this.ground.autoScroll(-100, 0);
+
+			&#47;&#47; Add some moving clouds
+			this.clouds = game.add.group();
+			for(var i=0; i&lt;3; i++){
+				var cloud = this.game.add.sprite(this.game.rnd.integerInRange(0, this.game.width), this.game.rnd.integerInRange(0, 50), &#39;cloud&#39;);
+				cloud.anchor.setTo(0.5, 0);
+				this.clouds.add(cloud);
+
+				&#47;&#47; Kill the cloud when out of bounds
+				cloud.checkWorldBounds = true;
+   				cloud.outOfBoundsKill = true;
+
+   				&#47;&#47; Move clouds
+   				this.game.physics.arcade.enableBody(cloud);
+   				cloud.body.allowGravity = false;
+				cloud.body.velocity.x = -this.game.rnd.integerInRange(15, 30);
+			}
+
+			&#47;&#47; Add hero
+			this.hero = this.game.add.sprite(180, 160, &#39;hero&#39;);
+			this.hero.anchor.setTo(0.5, 0.5);
+			this.hero.animations.add(&#39;run&#39;);
+			this.hero.animations.play(&#39;run&#39;, 20, true);
+
+			&#47;&#47; Activate hero gravity
+			this.game.physics.arcade.enableBody(this.hero);
+			this.hero.body.allowGravity = true;
+
+			&#47;&#47; Animation loop on the hero
+			this.heroTween = this.game.add.tween(this.hero).to({x: 360}, 2500, Phaser.Easing.Linear.NONE, true, 0, Number.POSITIVE_INFINITY, true);
+
+			&#47;&#47; Allow hero to jump (Spacebar and mouse&#47;touch)
+			this.jumpKey = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+			this.jumpKey.onDown.add(this.heroJump, this.hero);
+			this.game.input.onDown.add(this.heroJump, this.hero);
+		},
+
+		update: function(){
+			&#47;&#47; Revive dead clouds
+			this.clouds.forEachDead(function(cloud){
+				cloud.revive();
+				cloud.x = this.game.width + cloud.width&#47;2;
+			}, this);
+
+			&#47;&#47; Collisions between hero and ground
+			this.game.physics.arcade.collide(this.hero, this.ground);
+		},
+
+		heroJump: function(){
+			&#47;&#47; Change hero velocity if touching the ground
+			if(this.body.touching.down){
+				this.body.velocity.y -= 500;
+			}
+		}
+	};
+
+	&#47;&#47; Create game state and start phaser
+	var game = new Phaser.Game(480, 320, Phaser.AUTO, &#39;game&#39;);
+	game.state.add(&#39;game&#39;, Game);
+	game.state.start(&#39;game&#39;);
+};
+</pre>
+<p>OK now you have the code running on your localhost, let&#8217;s create a pause panel extending Phaser.Group that contains some text, a play button, and two functions (show and hide) that we will call later in our game state.</p>
+<p>Note that I just commented lightly the code since the goal of this tutorial is just to handle a game pause screen with Phaser.</p>
+<pre class="prettyprint">&#47;&#47; Create our pause panel extending Phaser.Group
+var PausePanel = function(game, parent){
+	&#47;&#47; Super call to Phaser.Group
+	Phaser.Group.call(this, game, parent);
+
+	&#47;&#47; Add the panel
+	this.panel = this.create(this.game.width&#47;2, 10, &#39;panel&#39;);
+	this.panel.anchor.setTo(0.5, 0);
+
+	&#47;&#47; Add text
+	this.pauseText = this.game.add.bitmapText(100, 20, &#39;kenpixelblocks&#39;, &#39;Game paused&#39;, 24);
+	this.add(this.pauseText);
+	this.cloudsText = this.game.add.bitmapText(100, 50, &#39;kenpixelblocks&#39;, &#39;Clouds are still moving :)&#39;, 16);
+	this.add(this.cloudsText);
+
+	&#47;&#47; Add play button
+	this.btnPlay = this.game.add.button(20, 20, &#39;btnPlay&#39;, function(){
+		this.game.state.getCurrentState().playGame()}
+	, this);
+	this.add(this.btnPlay);
+
+	&#47;&#47; Place it out of bounds
+	this.x = 0;
+	this.y = -100;
+};
+
+PausePanel.prototype = Object.create(Phaser.Group.prototype);
+PausePanel.constructor = PausePanel;
+
+PausePanel.prototype.show = function(){
+	this.game.add.tween(this).to({y:0}, 500, Phaser.Easing.Bounce.Out, true);
+};
+PausePanel.prototype.hide = function(){
+	this.game.add.tween(this).to({y:-100}, 200, Phaser.Easing.Linear.NONE, true);
+};
+</pre>
+<p>Let&#8217;s go back to our create function and add a panel we&#8217;ve jsut created, and a pause button that will call the pauseGame function. That function will check if the &#8220;paused&#8221; flag defined earlier is false (to prevent multi clicks on the pause button), then show show our panel. We also add a playGame function doing the opposite of the pauseGame function, and call it at the end of our create function to launch the game.</p>
+<pre class="prettyprint">create: function(){
+	&#47;*  previous code here *&#47;
+
+	&#47;&#47; Add a pause button
+	this.btnPause = this.game.add.button(20, 20, &#39;btnPause&#39;, this.pauseGame, this);
+
+	&#47;&#47; Let&#39;s build a pause panel
+	this.pausePanel = new PausePanel(this.game);
+	this.game.add.existing(this.pausePanel);
+
+	&#47;&#47; Enter play mode
+	this.playGame();
+},
+
+pauseGame: function(){
+	if(!paused){
+		&#47;&#47; Show panel
+		paused = true;
+		this.pausePanel.show();
+	}
+},
+
+playGame: function(){
+	if(paused){
+		&#47;&#47; Hide panel
+		paused = false;
+		this.pausePanel.hide();
+	}
+}
+</pre>
+<p>We now have a pause screen ! Yeah ! But it&#8217;s not pausing the game at all&#8230; What we have to do now is to move some code from our create function to our playGame function.  We want our new playGame function to set the hero gravity and velocity, start his running animation, animate the ground and the hero (the horizontal automatic movement that we need to pause in the create function).</p>
+<pre class="prettyprint">create: function(){
+	&#47;&#47; Remove auto scroll of the ground 
+	&#47;&#47;this.ground.autoScroll(-100, 0);
+
+	&#47;&#47; Pause our hero tween right after startiing it
+	this.heroTween = this.game.add.tween(this.hero).to({x: 360}, 2500, Phaser.Easing.Linear.NONE, true, 0, Number.POSITIVE_INFINITY, true);
+	this.heroTween.pause();
+
+	&#47;&#47; Move the physics to the pauseGame function
+	&#47;&#47;this.game.physics.arcade.enableBody(this.hero);
+	&#47;&#47;this.hero.body.allowGravity = true;
+},
+
+pauseGame: function(){
+	if(paused){
+		&#47;&#47; Leaving pause
+		paused = false;
+		this.pausePanel.hide();
+
+		&#47;&#47; Anim ground
+		this.ground.autoScroll(-100, 0);
+
+		&#47;&#47; play the runing animation of the hero
+		this.hero.animations.currentAnim.paused = false;
+		
+		&#47;&#47; Activate hero gravity
+		this.game.physics.arcade.enableBody(this.hero);
+		this.hero.body.allowGravity = true;
+
+		&#47;&#47; Resume the tween
+		this.heroTween.resume();
+	}
+}
+</pre>
+<p>We now have to disable all those things we moved in the playGame function in our pauseGame function. the pauseGame will do the exact opposite of the playGame function as explained earlier. We will  kill the hero body, disabling his physics and prevent him from falling to the ground if in air.</p>
+<pre class="prettyprint">pauseGame: function(){
+	if(!paused){
+		&#47;&#47; Enter pause
+		paused = true;
+		this.pausePanel.show();
+
+		&#47;&#47; Stop auto scrolling
+		this.ground.autoScroll(0, 0);
+
+		&#47;&#47; Stop the hero
+		this.hero.animations.currentAnim.paused = true;
+
+		&#47;&#47; Kill the body
+		this.hero.body = null;
+
+		&#47;&#47; Launch the tween
+		this.heroTween.pause();
+	}
+}
+</pre>
+<p>Wait, I have an error in my console, and my hero is jumping when I click the pause button. What&#8217;s the problem?</p>
+<p>In fact, we handle the mouse and touch to trigger the jump function with this line of code :</p>
+<pre class="prettyprint">this.game.input.onDown.add(this.heroJump, this.hero);
+</pre>
+<p>Problem is that listening on that event directy in the game.input will trigger it before all our others events. I tried a lot of things in order to prevent this behovior (like using priorityIDs, but the game.input doesn&#8217;t have this setting), and ended creating a blank sprite all over my screen to trigger my mouse/touch events.<br />
+Keep in mind that you have to create your touche area before adding your buttons to the game, in order to have your button over this area and take the lead on the touch event.</p>
+<pre class="prettyprint">&#47;&#47; Remove input listener on this.game.input
+&#47;&#47;this.game.input.onDown.add(this.heroJump, this.hero);
+
+&#47;&#47; Create touch area
+this.touchArea = this.game.add.sprite(0, 0);
+this.touchArea.width = this.game.width;
+this.touchArea.height = this.game.height;
+this.touchArea.inputEnabled  = true;
+this.touchArea.events.onInputDown.add(this.heroJump, this.hero);
+</pre>
+<p>It&#8217;s now look pretty much like what we were planning to do. But there is one thing left we have to do. Those who have played with this prototype a little may have noticed a small bug. If you pause the game while the hero started to jump, he will fall directly when resuming the game without finishing his jump. When we killed the hero body in the pauseGame function, the hero lost trace of his y velocity. We need to store the y velocity in a variable in order to re attribute this velocity to the hero when exiting the pause screen.<br />
+We add a heroVelocityY variable after creating our hero in the create function.</p>
+<pre class="prettyprint">create: function(){
+	&#47;&#47; Add hero
+	&#47;&#47; Add a velocity variable on hero
+	this.heroVelocityY = 0;
+},
+
+pauseGame: function(){
+	&#47;&#47; Save the velocity of the hero before killing the body
+	this.heroVelocityY = this.hero.body.velocity.y;
+},
+
+playGame: function(){
+	&#47;&#47; Set the hero velocity after activating gravity
+	this.hero.body.velocity.y = this.heroVelocityY;
+}
+</pre>
+<p>One last thing to do, is to prevent hero from jumping, in the heroJump function.</p>
+<pre class="prettyprint">
+heroJump: function(){
+	if(!paused){
+		&#47;&#47; Change hero velocity if touching the ground
+		if(this.body.touching.down){
+			this.body.velocity.y -= 500;
+		}
+	}
+}
+</pre>
+<p>Fine, you must have now a complete running prototype of a pause screen, like this one :<br />
+<iframe src="http://examples.loopeex.com/pause-screen/" width="480" height="320"></iframe><br />
+Note that our clouds are still moving behind then panel, because we didn&#8217;t stop them in the pauseGame function. It&#8217;s up to you to determine wich elements will be affected by the pause screen.</p>
+<p>In conclusion, you have to create two functions (playGame and pauseGame), in wich you will respectively  add and remove yous game interactions (animations, tween, gravity, &#8230;) and use a flag (here our var paused) in your other functions to know if the game has been paused or not.</p>
+<p>You can have a look on the <a href="http://examples.loopeex.com/pause-screen/" target="_blank">final code</a> in your browser console.</p>
+<p>Feel free to comment this tutorial or asking me any questions <img src="http://www.loopeex.com/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" /></p>
+			</div>
+	</article>
+		
+							<nav class="navigation post-navigation" role="navigation">
+					<h1 class="screen-reader-text">Post navigation</h1>
+					<div class="nav-links">
+
+							<a href="http://www.loopeex.com/adjusting-resize-on-mobile-devices/" rel="prev"><span class="meta-nav">&larr;</span> Adjusting resize on mobile devices</a>							<a href="http://www.loopeex.com/challenge-mode-on/" rel="next">Challenge mode ON <span class="meta-nav">&rarr;</span></a>
+					</div>
+			</nav>
+			
+				
+<div id="disqus_thread">
+            <div id="dsq-content">
+
+
+            <ul id="dsq-comments">
+                    <li class="post pingback">
+        <p>Pingback: <a href='http://dev.phaser.io/news/handle-a-pause-screen/' rel='external nofollow' class='url'>Handle a Pause Screen | Phaser</a>()</p>
+    </li>
+    </li><!-- #comment-## -->
+    <li class="post pingback">
+        <p>Pingback: <a href='http://www.loopeex.com/space-crusade-my-first-html5-game/' rel='external nofollow' class='url'>Space Crusade : My first HTML5 game - Loopeex</a>()</p>
+    </li>
+    </li><!-- #comment-## -->
+    <li class="comment even thread-even depth-1" id="dsq-comment-11">
+        <div id="dsq-comment-header-11" class="dsq-comment-header">
+            <cite id="dsq-cite-11">
+                <span id="dsq-author-user-11">Hady Hayman</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-11" class="dsq-comment-body">
+            <div id="dsq-comment-message-11" class="dsq-comment-message"><p>Great tutorial! Waiting for more.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-13">
+        <div id="dsq-comment-header-13" class="dsq-comment-header">
+            <cite id="dsq-cite-13">
+                <span id="dsq-author-user-13">Bommel</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-13" class="dsq-comment-body">
+            <div id="dsq-comment-message-13" class="dsq-comment-message"><p>Your tutorials are really greate! Thanks <img src="http://www.loopeex.com/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /></p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment even thread-even depth-1" id="dsq-comment-15">
+        <div id="dsq-comment-header-15" class="dsq-comment-header">
+            <cite id="dsq-cite-15">
+http://migliorhosting.biz                <span id="dsq-author-user-15">Salvatore Capolupo</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-15" class="dsq-comment-body">
+            <div id="dsq-comment-message-15" class="dsq-comment-message"><p>Great hints thank you!</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-16">
+        <div id="dsq-comment-header-16" class="dsq-comment-header">
+            <cite id="dsq-cite-16">
+http://rubyrock.me/                <span id="dsq-author-user-16">Pierre-Alexandre Piarulli</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-16" class="dsq-comment-body">
+            <div id="dsq-comment-message-16" class="dsq-comment-message"><p>Bravo, bel article.<br />
+Thanks nice post.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+            </ul>
+
+
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+var disqus_url = 'http://www.loopeex.com/handle-a-pause-screen-with-phaser/';
+var disqus_identifier = '79 http://www.loopeex.com/?p=79';
+var disqus_container_id = 'disqus_thread';
+var disqus_shortname = 'loopeex';
+var disqus_title = "Handle a pause screen with Phaser";
+var disqus_config_custom = window.disqus_config;
+var disqus_config = function () {
+    /*
+    All currently supported events:
+    onReady: fires when everything is ready,
+    onNewComment: fires when a new comment is posted,
+    onIdentify: fires when user is authenticated
+    */
+    
+    
+    this.language = '';
+        this.callbacks.onReady.push(function () {
+
+        // sync comments in the background so we don't block the page
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = '?cf_action=sync_comments&post_id=79';
+
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+    });
+    
+    if (disqus_config_custom) {
+        disqus_config_custom.call(this);
+    }
+};
+
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+				
+			
+			</div>
+
+
+	<!--wp code prettify-->
+	<script type="text/javascript">
+	function $(id) {return !id ? null : document.getElementById(id);}
+
+	loadPrettifyCss = function () {
+		if(!$('prettify_css')) {
+			css = document.createElement('link');
+			css.id = 'prettify_css';
+			css.type = 'text/css';
+			css.rel = 'stylesheet';
+			css.href = 'http://www.loopeex.com/wp-content/plugins/wp-code-prettify/css/desert.css';
+			var headNode = document.getElementsByTagName("head")[0];
+			headNode.appendChild(css);
+		} else {
+			$('prettify_css').href = 'http://www.loopeex.com/wp-content/plugins/wp-code-prettify/css/desert.css';
+		}
+
+		if(!$('prettify_custom')) {
+			css = document.createElement('style');
+			css.id = 'prettify_custom';
+			css.type = 'text/css';
+			css.rel = 'stylesheet';
+			css.innerHTML = '';
+			var headNode = document.getElementsByTagName("head")[0];
+			headNode.appendChild(css);
+		} else {
+			$('prettify_css').innerHTML = '';
+		}
+	}
+	</script>
+	<script type="text/javascript">
+		loadPrettifyCss();
+	</script>
+
+	<script type="text/javascript" src="http://www.loopeex.com/wp-content/plugins/wp-code-prettify/js/prettify.js"></script>
+	<script type="text/javascript">
+		function wpCodePrettifyOnLoad(func){
+			var wpCodePrettifyOldOnLoad = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func
+			} else {
+				window.onload = function () {
+					wpCodePrettifyOldOnLoad();
+					func()
+				}
+			}
+		}
+
+		wpCodePrettifyOnLoad(function(){prettyPrint();});
+	</script>
+	<!--//wp code prettify-->
+										<div class="site-info">
+												<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress</a>.
+						Theme: Flat by <a href="http://www.yoarts.com/" title="Webmaster Tutorials &amp; Resources">YoArts</a>.					</div>
+							</div>
+		</div>
+	</div>
+</div>
+        <script type="text/javascript">
+        // <![CDATA[
+        var disqus_shortname = 'loopeex';
+        (function () {
+            var nodes = document.getElementsByTagName('span');
+            for (var i = 0, url; i < nodes.length; i++) {
+                if (nodes[i].className.indexOf('dsq-postid') != -1) {
+                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
+                    url = nodes[i].parentNode.href.split('#', 1);
+                    if (url.length == 1) { url = url[0]; }
+                    else { url = url[1]; }
+                    nodes[i].parentNode.href = url + '#disqus_thread';
+                }
+            }
+            var s = document.createElement('script'); 
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        // ]]>
+        </script>
+        <script type='text/javascript' src='http://www.loopeex.com/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/www.loopeex.com\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ..."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.loopeex.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.0.2'></script>
+<script type='text/javascript' src='http://www.loopeex.com/wp-includes/js/comment-reply.min.js?ver=4.0.1'></script>
+<script type='text/javascript' src='http://www.loopeex.com/wp-content/themes/flat/assets/js/scripts.min.js?ver=1.4.2'></script>
+<script type='text/javascript' src='http://www.loopeex.com/wp-content/themes/flat/assets/js/jquery.bxslider.min.js?ver=1.0'></script>
+</body>
+</html>
